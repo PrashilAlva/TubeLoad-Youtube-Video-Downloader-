@@ -29,7 +29,17 @@ export class HomeComponent implements OnInit {
     this.tubeService.getDownloadLink(data).subscribe((res)=>
     {
       this.downloadLink=res['url'];
-      this.embedLink=`https://www.youtube.com/embed/${this.link.substring(32)}`
+      if(this.link.startsWith("https://youtu.be")){
+        this.embedLink=`https://www.youtube.com/embed/${this.link.substring(17)}`
+      }
+      else if(this.link.startsWith("https://m.youtube")){
+        alert("Mobile Browser links are not Supported")
+        location.reload()
+      }
+      else{
+        this.embedLink=`https://www.youtube.com/embed/${this.link.substring(32)}`
+      }
+      console.log(this.embedLink)
       this.link=""
       this.loading=false
       this.content=true
