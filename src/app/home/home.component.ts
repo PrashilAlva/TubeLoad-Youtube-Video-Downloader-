@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         this.embedLink=`https://www.youtube.com/embed/${this.link.substring(17)}`
       }
       else if(this.link.startsWith("https://m.youtube")){
-        alert("Mobile Browser links are not Supported")
+        alert("Sorry, Mobile Browser links are not Supported")
         location.reload()
       }
       else{
