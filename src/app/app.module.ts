@@ -7,7 +7,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { ResultComponent } from './result/result.component';
 import {FormsModule} from '@angular/forms'
 import { SafePipeModule } from 'safe-pipe';
 import { AboutComponent } from './about/about.component';
@@ -18,7 +17,6 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ResultComponent,
     AboutComponent
   ],
   imports: [

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   loading:boolean;
   content:boolean;
   embedLink:string;
+  invalidURL:boolean;
   data;
   @ViewChild('result', { static: true }) result: ElementRef;
 
@@ -20,7 +21,23 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  getDownloadLink():void{
+  onSubmit(){
+    this.content=false
+        var re1="https://m.youtube.com/watch?v="
+        var re2="https://www.youtube.com/watch?v="
+        var re3="https://youtu.be/"
+        var isValid:boolean;
+        if(this.link.startsWith(re1)||this.link.startsWith(re2)||this.link.startsWith(re3)){
+          this.invalidURL=false
+            this.getDownloadLink();
+        }
+        else{
+          this.invalidURL=true
+          return;
+        }
+  }
+
+  getDownloadLink(){
     this.result.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" }); 
     this.loading=true
     this.content=false
@@ -47,7 +64,6 @@ export class HomeComponent implements OnInit {
       else{
         this.embedLink=`https://www.youtube.com/embed/${this.link.substring(32)}`
       }
-      console.log(this.embedLink)
       this.link=""
       this.loading=false
       this.content=true
