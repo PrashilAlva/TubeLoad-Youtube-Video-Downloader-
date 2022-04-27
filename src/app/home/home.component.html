@@ -1,0 +1,49 @@
+<section class="text-gray-500 bg-gray-900 body-font">
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+      <img class="object-cover object-center rounded" alt="hero"
+        src="https://blog-assets.hootsuite.com/wp-content/uploads/2018/04/how-to-get-more-views-on-youtube.png">
+    </div>
+    <div
+      class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Downloading YouTube Videos is just a
+        Search Away!</h1>
+      <p class="mb-8 leading-relaxed">With TubeLoad, Download any videos present in YouTube in MP4 Format </p>
+      <form (ngSubmit)="onSubmit()" ngNativeValidate>
+        <div class="flex w-full md:justify-start justify-center">
+          <input
+            class="bg-gray-800 rounded mr-4 border border-gray-700 text-white focus:outline-none focus:border-red-500 text-base px-4 md:w-full lg:w-full xl:w-1/2 w-2/4"
+            size="50" placeholder="Youtube Link of Video" type="text" required [(ngModel)]="link"
+            [ngModelOptions]="{standalone: true}">
+          <button
+            class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
+            type="submit">Search</button>
+        </div>
+        <div *ngIf="invalidURL">
+          <h2 class="text-xs text-red-500 tracking-widest font-medium title-font mb-1">INVALID URL!</h2>
+        </div>
+      </form>
+    </div>
+  </div>
+  <section class="text-gray-500 body-font bg-gray-900" #result>
+    <div *ngIf="loading">
+      <img src="assets/images/Loader.gif" width="100" height="100" class="loader">
+      <br><br>
+    </div>
+    <div class="container px-5 py-24 mx-auto" *ngIf="content">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Is this the Video you're Looking For?
+        </h1>
+      </div>
+      <div class="flex flex-wrap">
+        <iframe width="560" height="315" [src]="embedLink | safe: 'resourceUrl'" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h2 class="text-xs text-red-500 text-center tracking-widest font-medium title-font mb-1">IF YES, THEN DOWNLOAD BY
+        CLICKING THE BUTTON BELOW</h2>
+      <button
+          class="flex mx-auto mt-16 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg" (click)="downloadVideo()">Download
+          Now &nbsp;<i style="padding-top:4.4px;" class="fa fa-download" aria-hidden="true"></i></button>
+    </div>
+  </section>
+</section>
